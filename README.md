@@ -1,10 +1,49 @@
 # chess-raspberrypi
 End goal: Use TensorFlow Lite + RaspberryPI to process a chessboard using a camera and correctly read out loud and visualise moves
 
+## Blog part
+Feels a bit easier to document the project working day after working day thereore I will keep this format and then at the end of the this section the technical description of the project will follow.
+
+### Day 0 - Setting up the raspberry PI 2
+I borrowed raspberry Pi 2 to do some experiments before my own arrives(btw I bought Pi 4, 4GB and it's on the way!)
+
+What is necessary to know about raspberry PIs is that you need few things in order to make them work, namely Power Supply, SD card and optionally: Mouse, Keyboard, HDMI Cable and Screen to plug the HDMI to.
+
+**From my own experience in order for Pi to transfer video to your screen the HDMI cable has to be plugged in both the screen and the Pi before plugging the power supply**
+
+### Installing Operating System
+Raspberry PI does not have an operating system by default. What you need to do is to get a **Micro SD CARD**, plug it into your machine with card reader, or buy one online (look for **Micro SD card reader** they are very cheap).
+
+Then follow the installation process(recommended)[from official website tutorial](https://www.raspberrypi.com/documentation/computers/getting-started.html#installing-the-operating-system) or you can try to make use of my experience and follow this steps:
+
+- Downloand and install official software [Raspberry Pi Imager](https://www.raspberrypi.com/software/) for installing the Operating System(OS) on your card:
+- Make sure that the Micro SD card is in the reader
+- Run Raspberry Pi Imager
+- Select the Sd card I wish to install the OS
+- Choose the OS, I chose Raspbian as it seems like the general use case version of the Operating Systems available
+
+### Starting the Pi
+I took out the card from the SD card reader inserted it inside my Pi. (For me the SD slot was on the bottom part of the Pi, if you are unsure where it is just google for it!)
+Now I plugged my mouse, keyboard, screen, ethernet cable and finnaly power supply.
+
+Pi started successfully and I could see GUI of the system. Then the system asked me if I wish to install the necessary updates and it took around 2 hours :)
+
+After, it installed I checked what kind of version of python I had on my system(3.9.2), setup Github account and then tried to run some basic python scripts.
+
+Then I spent some time with my dad where he explained me what is the job of the pins on my raspberry Pi and how can the electronics work. How to plug sensors etc.
+
+As working with Pi for me will mostly involve using terminal I decided that I want to have a remote connection to my Pi from my regular laptop.
+
+I managed to open and SSH port to my Pi and started using the terminal from my mac. See [How to enable ssh to your raspberrypi](#how-to-enable-ssh-to-your-raspberrypi)
+
+That was it for the day! Day 0 was succesful.
+
 ## How to enable ssh to your raspberrypi
 One of the first things I did was to have an option to ssh to my Raspberry Pi from my Mac (it's convenient).  
-For starters I plugged a screen keyboard and an ethernet cable to my PI and did following things:  
-- First I needed to generate a ssh key
+For starters I plugged a screen keyboard and an ethernet cable to my PI and did following things:
+
+- We need to allow other computers to connect to our Raspberry Pi. Preferences -> Raspberry Pi Configuration -> Interfaces -> Enable SSH
+- Generate a ssh key (I'm using Mac os)
 ```console
 pi:~$ sh-keygen -t rsa -C "myfakeemail@fake.com"
 ```
