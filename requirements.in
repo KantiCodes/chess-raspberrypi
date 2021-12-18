@@ -1,0 +1,17 @@
+# My favorites
+mypy
+black
+pytest-cov
+pytest-mock
+flake8
+flake8-docstrings
+flake8-bandit
+flake8-bugbear
+flake8-deprecated
+flake8-executable
+flake8-black
+pylint
+
+# Python 3.8.0
+tensorflow
+pytest
