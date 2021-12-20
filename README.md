@@ -55,8 +55,20 @@ Today my camera arrvied and my goal was simple - take a picture of myself :D
 
 For the hardware part of plugging the camera I used the help of my dad. As for the Pi however, similairly to the _ssh connection_ I had to enable it camera access. 
 
-You can find the Python code to take a picture as well as more information here: [Enabling the camera](#enabling-the-camera-on-pi)
+You can find the Python code to take a picture below and more information about that topic here: [Enabling the camera](#enabling-the-camera-on-pi)
 
+```Python
+from time import sleep
+from picamera import PiCamera
+
+camera = PiCamera()
+camera.resolution = (1024, 768)
+camera.start_preview()
+# Camera warm-up time
+sleep(1)
+camera.capture('foo.jpg')
+```
+_Important: The sleep(1) function gives the necessary time for the camera to prepare. If you remove it you might encounter difficulties_
 
 ## Day 2 - How the hell is this going to work?
 Today I didn't code much, instead I spent whole day thinking about practical issues of image detection and how the hell am I going to create my data set, how is the model going to learn what is a chess board and finally whether I should create my model from the scratch. As always after few hours of thinking in my head not being able to figure it out I got demotivated but
