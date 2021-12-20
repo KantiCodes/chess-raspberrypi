@@ -2,15 +2,19 @@
 
 My end goal is to combine TensorFlow/Lite and RaspberryPI to process images from a chess board. I want my software to recognize movement of the pieces based on the real time image processing but I will not distinguish beteen the types of the pieces(more on that approach later).
 
-Later I want to use python-library [chess](https://python-chess.readthedocs.io/en/latest/#features) to display the game on a screen as players make their movements. 
+Later I want to use Python library [chess](https://python-chess.readthedocs.io/en/latest/#features) to display the game on a screen as players make their movements. 
 I want to be able track the game live and alert the players if they do illegal movements etc.
 
 Such projects have already been carried out by other people - but my approach differs slightly. From what I saw, most of the solutions are board/pieces dependant where people train the models to recognize their and their only pieces. It isn't a suprise that such models do not work for other boards. I want to do something a bit easier yet more flexible in terms of different boards application. I want to be able to tell whether certain piece is white or black and what is it's position. 
-For all chess games the position of the pieces is the same, therefore I should be able to track the movements only by knowing the position of the piece being moved.
+For all chess games the initial position of the pieces is the same, therefore if I can "look" at the game from its begining I should be able to track the movements only by knowing the position of the piece being moved.
+
+Let's do it!
 
 
 # Blog part
-I've done few projects before and I found documenting the project day after day easier. I will keep this format so that my progress can be tracked in a chronological - true to my process, manner. As for the technical parts I will add them as separate sections and add references to them.
+I've done few projects before and I found documenting the project day after day easier. I will keep this format so that my progress can be tracked in a chronological - true to my process, manner. As for the technical parts I will add them as separate sections and add references to them if necessary, in other cases I will just paste a link to reference that helped me understand/implement certain thing.
+
+If you are new to Python or Software development and some things does not make sense, please open an Issue and I will do my best to add necessary clarification to the text.
 
 ## Day 0 - Setting up the raspberry PI 2
 I borrowed a raspberry Pi 2 to do some experiments before my own arrives(btw I bought Pi 4, 4GB and it's on the way!)
@@ -49,9 +53,9 @@ That was it for the day! Day 0 was succesful.
 ## Day 1 - The camera is here!
 Today my camera arrvied and my goal was simple - take a picture of myself :D
 
-For the hardware part of plugging the camera I used the help of my dad as for the Pi, similairly to the _ssh connection_ I had to enable it. More on that [here](#enabling-the-camera-on-pi).
+For the hardware part of plugging the camera I used the help of my dad. As for the Pi however, similairly to the _ssh connection_ I had to enable it camera access. 
 
-Then I found a Python library [Picamera](https://picamera.readthedocs.io/en/release-1.13/) that allows to operate on the camera through code.
+You can find the Python code to take a picture as well as more information here: [Enabling the camera](#enabling-the-camera-on-pi)
 
 
 ## Day 2 - How the hell is this going to work?
@@ -107,3 +111,29 @@ mac:~$ ssh pi@192.168.0.16
 ## Enabling the camera on Pi
 
 To enable the camera I used [this link](https://www.arrow.com/en/research-and-events/articles/raspberry-pi-camera-options-and-usage) I think it's great tutorial and however I try I won't make it simpler/better
+
+## Taking a picture
+
+In order to take a picture you need to make sure that you have the [Picamera](https://picamera.readthedocs.io/) installed and the camera plugged.
+
+Create a file with a following code and save it - for instance as: _photo_maker.py_
+
+```Python
+from time import sleep
+from picamera import PiCamera
+
+camera = PiCamera()
+camera.resolution = (1024, 768)
+camera.start_preview()
+# Camera warm-up time
+sleep(1)
+camera.capture('foo.jpg')
+```
+_Important: The sleep(1) function gives the necessary time for the camera to prepare. If you remove it you might encounter difficulties_
+
+Then open the terminal, make sure that your current directory is the directory that the Python file was saved, then execute:
+```console
+pi:~$ python3 photo_maker.py
+```
+
+You should be able to find your picture in the same directory as your python file.
