@@ -5,7 +5,8 @@ My end goal is to combine TensorFlow/Lite and RaspberryPI to process images from
 Later I want to use python-library [chess](https://python-chess.readthedocs.io/en/latest/#features) to display the game on a screen as players make their movements. 
 I want to be able track the game live and alert the players if they do illegal movements etc.
 
-Such projects have already been carried out by other people - but my approach differs slightly. From what I saw, most of the solutions are board/pieces dependant where people train their models to recognize their pieces from pictures of their board. I want to do something a bit easier yet more flexible in terms of the boards. I want to be able to track only white/black pieces movements and then keep the state of the chess board to recognize which pieces were moved. 
+Such projects have already been carried out by other people - but my approach differs slightly. From what I saw, most of the solutions are board/pieces dependant where people train the models to recognize their and their only pieces. It isn't a suprise that such models do not work for other boards. I want to do something a bit easier yet more flexible in terms of different boards application. I want to be able to tell whether certain piece is white or black and what is it's position. 
+For all chess games the position of the pieces is the same, therefore I should be able to track the movements only by knowing the position of the piece being moved.
 
 
 # Blog part
