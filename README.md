@@ -71,25 +71,33 @@ camera.capture('foo.jpg')
 _Important: The sleep(1) function gives the necessary time for the camera to prepare. If you remove it you might encounter difficulties_
 
 ## Day 2 - How the hell is this going to work?
-Today I didn't code much, instead I spent whole day thinking about practical issues of image detection and how the hell am I going to create my data set, how is the model going to learn what is a chess board and finally whether I should create my model from the scratch. As always after few hours of thinking in my head not being able to figure it out I got demotivated but
-If you haven't heard about transfer learning learning or fine tunning I will try to briefly explain them.
-Companies like Google have huge potential in terms of data and computational power. The use it to build powerful models that solve general tasks. 
+Today I again didn't code much, instead I spent whole day thinking about practical issues of image detection and how the hell am I going to create my data set, how is the model going to learn what is a chess board and finally whether I should create my model from the scratch. 
 
-One example that is very famous - MobileNets, is a family convolutional neural networks for image processing that Google trained and shared with public. This models usually serve general purpose, for instance:
-- the network is not capable of distinguishing German Shepards from Pudels but it can recognize dogs vs cats
-- the network is not capable of distinguishing slim fit shirts from regular shirts but is able to find a difference between a shirt and a sweater.
+As always after few hours of extensive thinking and not being able figure it out I got demotivated and started doubting whether is it even possible. Then I started talking to my friends and with their help I managed to organise my thoughts and pinpoint important things:
+
+- I am going to transfer learning to train my model
+- I am going to first train it on an easy [dataset](https://www.kaggle.com/koryakinp/chess-positions) and then use camera to check how is that model working with real images
+
+### Transfer learning
+If you haven't heard about transfer learning learning or fine tunning I will try to briefly explain them.
+Companies like Google have huge potential in terms of data and computational power. They use it to build powerful models that solve general tasks. 
+
+One example that is very famous - MobileNets, is a family convolutional neural networks for image processing that Google trained and shared with the public. Such models usually serve general purpose, for instance:
+- the network is not capable of distinguishing _German Shepards_ from _Pudels_ but it can recognize _dogs_ vs _cats_
+- the network is not capable of distinguishing _slim fit shirts_ from _regular shirts_ but is able to find a difference between a _shirt_ and a _sweater_
 
 _I hope you get what I mean general usecase by now!_
 
-We as public can use this general use case models to build something more specialized. If we have enough data on slim shirts and regular ones we can use to with the help of MobileNets solve the problem of distinguishing them.
+We as public can use this general use case models to build something more specialized. If we have enough data on slim shirts and regular ones we can use to with the help of MobileNets solve the problem of distinguishing between those two.
 
 **Now the promised explanation**:
 Let's assume that MobileNets is build from hundred of blocks connected together as a horizontal line, like so:
 - B1, B2, B3, B4, B6 .... BN 
-If we take our picture of a dog and put it through each of this blocks in chronological order, then the last block will be able to tell us that indeed the picture consists a dog.
+If we take our picture of a dog and put it through each of this blocks in chronological order, then the last block will be able to tell us that indeed the picture represents a dog.
 
-If we then wanted  
-enormous resources to train machine learning model for general use cases and th these are techniques that use general use case, pre-trainned neural network for is a way for people to use neural networks that were trained for
+If we then wanted to specialise our blocks to solve the _German Shepards vs Pudels_ problem, we could take the last 10% of the blocks and start manipulating them so that instead of remembering differences between cats/dogs, it would start to memorize differences between _German Shepards_ and _Pudels_ - that approach is called **Fine tunning**. We tune only that last layers of neural network (in our case the last 10% of the blocks) so that instead of solving general problem it solves our specific problem. Idea behind it is that we trained our model long enough, the first 90% of the blocks for generalised would be the same as the 90% of the first blocks for the specialized problem.
+
+**Transfer learning** works almost the same way - we take the generalised model and try to specialize it but instead of working on the 10% of the neural netowrk, we manipulate the parameters of the entire network.
 
 # Technical part
 
@@ -126,7 +134,14 @@ To enable the camera I used [this link](https://www.arrow.com/en/research-and-ev
 
 ## Taking a picture
 
-In order to take a picture you need to make sure that you have the [Picamera](https://picamera.readthedocs.io/) installed and the camera plugged.
+In order to take a picture you need to make sure that you have the [Picamera](https://picamera.readthedocs.io/) installed/
+
+Shut down your raspberry Pi and unplug the power(just for safety) then follow this 2 minute video to properly connect you camera tape with the Pi - [Video](https://www.youtube.com/watch?v=lAbpDRy-gc0&t=83s)
+
+Remember:
+
+-blue part of the tape should face the USB ports
+- make sure you have properly closed the plastic to secure the camera tape
 
 Create a file with a following code and save it - for instance as: _photo_maker.py_
 
