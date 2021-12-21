@@ -81,7 +81,7 @@ As always after few hours of extensive thinking and not being able figure it out
 
 
 ### Transfer learning
-If you haven't heard about transfer learning learning or fine tunning I will try to briefly explain them, however the intuition behind it is to use some knowledge from one domain and transfer it to solve problems from other domain.
+If you haven't heard about transfer learning or fine tunning I will try to briefly explain them, however the intuition behind it is to use some knowledge from one domain and transfer it to solve problems from other domain.
 Companies like Google have huge potential in terms of data and computational power. They use it to build powerful models that solve general tasks. 
 
 One example that is very famous - MobileNets, is a family convolutional neural networks for image processing that Google trained and shared with the public. Such models usually serve general purpose, for instance:
