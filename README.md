@@ -77,6 +77,8 @@ As always after few hours of extensive thinking and not being able figure it out
 
 - I am going to transfer learning to train my model
 - I am going to first train it on an easy [dataset](https://www.kaggle.com/koryakinp/chess-positions) and then use camera to check how is that model working with real images
+- The format of my data is going to be a flattened 8x8 matrix see [encoding of images labels]
+
 
 ### Transfer learning
 If you haven't heard about transfer learning learning or fine tunning I will try to briefly explain them.
@@ -164,3 +166,24 @@ pi:~$ python3 photo_maker.py
 ```
 
 You should be able to find your picture in the same directory as your python file.
+
+## Representation of the target feature
+Target feature is what I want my model to predict.My output should be the representation of 8x8 matrix with 3 possible values:
+- E for empty field
+- W field with a white piece
+- B field with a black piece
+
+When predicting, my neural network will return me the data in the form of a vector but for the sake of simplicity let's represent the output as 8x8 matrix correlating to a chess board.
+
+                1 2 3 4 5 6 7 8
+                
+           A    B B B B B B B B
+           B    B B B B B B B B
+           C    E E E E E E E E
+           D    E E E E E E E E
+           E    E E E E E E E E
+           F    E E E W E E E E
+           G    W W W E W W W W
+           H    W W W W W W W W
+
+In this scenario White moved Pawn from D2 to D3
