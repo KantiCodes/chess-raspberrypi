@@ -77,7 +77,7 @@ As always after few hours of extensive thinking and not being able figure it out
 
 - I am going to transfer learning to train my model
 - I am going to first train it on an easy [dataset](https://www.kaggle.com/koryakinp/chess-positions) and then use camera to check how is that model working with real images
-- The format of my data is going to be a flattened 8x8 matrix see [encoding of images labels]
+- The format of my data is going to be a flattened 8x8 matrix see [representing my target feature](#representation-of-the-target-feature)
 
 
 ### Transfer learning
