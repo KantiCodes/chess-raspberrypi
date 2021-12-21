@@ -57,7 +57,7 @@ For the hardware part of plugging the camera I used the help of my dad. As for t
 
 You can find the Python code to take a picture below and more information about that topic here: [Enabling the camera](#enabling-the-camera-on-pi)
 
-```Python
+```Python 
 from time import sleep
 from picamera import PiCamera
 
@@ -81,25 +81,27 @@ As always after few hours of extensive thinking and not being able figure it out
 
 
 ### Transfer learning
-If you haven't heard about transfer learning learning or fine tunning I will try to briefly explain them.
+If you haven't heard about transfer learning learning or fine tunning I will try to briefly explain them, however the intuition behind it is to use some knowledge from one domain and transfer it to solve problems from other domain.
 Companies like Google have huge potential in terms of data and computational power. They use it to build powerful models that solve general tasks. 
 
 One example that is very famous - MobileNets, is a family convolutional neural networks for image processing that Google trained and shared with the public. Such models usually serve general purpose, for instance:
 - the network is not capable of distinguishing _German Shepards_ from _Pudels_ but it can recognize _dogs_ vs _cats_
 - the network is not capable of distinguishing _slim fit shirts_ from _regular shirts_ but is able to find a difference between a _shirt_ and a _sweater_
 
-_I hope you get what I mean general usecase by now!_
+_I hope you get what I mean by general usecase by now!_
 
-We as public can use this general use case models to build something more specialized. If we have enough data on slim shirts and regular ones we can use to with the help of MobileNets solve the problem of distinguishing between those two.
+We as public can use this general use case models to build something more specialized. If we have enough data on slim shirts and regular ones we can use to with the help of MobileNets solve the problem of distinguishing between these two.
 
-**Now the promised explanation**:
-Let's assume that MobileNets is build from hundred of blocks connected together as a horizontal line, like so:
+**I will use so called fine tunning**:
+
+Let's assume that MobileNets is built from hundred of blocks connected together as a horizontal line, like so:
 - B1, B2, B3, B4, B6 .... BN 
-If we take our picture of a dog and put it through each of this blocks in chronological order, then the last block will be able to tell us that indeed the picture represents a dog.
 
-If we then wanted to specialise our blocks to solve the _German Shepards vs Pudels_ problem, we could take the last 10% of the blocks and start manipulating them so that instead of remembering differences between cats/dogs, it would start to memorize differences between _German Shepards_ and _Pudels_ - that approach is called **Fine tunning**. We tune only that last layers of neural network (in our case the last 10% of the blocks) so that instead of solving general problem it solves our specific problem. Idea behind it is that we trained our model long enough, the first 90% of the blocks for generalised would be the same as the 90% of the first blocks for the specialized problem.
+The blocks on the left handside are able to recognize simple features such as shapes, lines, curves. The blocks closer to the right hand side are capable of finding out whether certain picture contains a tail, eyes, buttons, wheels - in general more conrete things. They together are capable of understanding the picture and knowing the differences between dogs and cats, shirts and sweaters and so on. If we take our picture of a dog and put it through each of this blocks in chronological order, then the last block will be able to tell us that indeed the picture represents a dog.
 
-**Transfer learning** works almost the same way - we take the generalised model and try to specialize it but instead of working on the 10% of the neural netowrk, we manipulate the parameters of the entire network.
+If we then wanted to specialise our blocks to solve the _German Shepards vs Pudels_ problem, we could take the last/right handside 10% of the blocks (as they hold more concrete features) and start manipulating them so that instead of remembering differences between cats/dogs, it would start to memorize differences between _German Shepards_ and _Pudels_ - that approach is called **Fine tunning**. We tune only that last layers of neural network so that instead of solving general problem it solves our specific problem. Idea behind it is that we trained our model long enough, the first 90% of the blocks for generalised would be the same as the 90% of the first blocks for the specialized problem and it is only the last "blocks" that learn to recognize the breed of the dog.
+
+So hopefully by know you somewhat figured out what I am planning to do. I will get one of the Networks from MobileNets and optimize it to learn how to serve my purpose of analysing the chess board.
 
 # Technical part
 
