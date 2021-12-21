@@ -188,4 +188,4 @@ When predicting, my neural network will return me the data in the form of a vect
            G    W W W E W W W W
            H    W W W W W W W W
 
-In this scenario White moved Pawn from D2 to D3
+In this scenario White moved Pawn from G4 to F4
