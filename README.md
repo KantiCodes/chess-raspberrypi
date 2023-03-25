@@ -12,11 +12,11 @@ Let's do it!
 
 
 # Blog part
-I've done few projects before and I found documenting the project day after day easier. I will keep this format so that my progress can be tracked in a chronological - true to my process, manner. As for the technical parts I will add them as separate sections and add references to them if necessary, in other cases I will just paste a link to reference that helped me understand/implement certain thing.
+I'll try to blog document it as a blog to track progress and later add more organised documentation on difference steps etc.
 
 If you are new to Python or Software development and some things does not make sense, please open an Issue and I will do my best to add necessary clarification to the text.
 
-## Day 0 - Setting up the raspberry PI 2
+## Setting up the raspberry PI 2
 I borrowed a raspberry Pi 2 to do some experiments before my own arrives(btw I bought Pi 4, 4GB and it's on the way!)
 
 What is necessary to know about the type of the Raspberry Pis I am using, is that you need few things in order to make them work, namely power supply, SD card and optionally: Mouse, Keyboard, HDMI Cable and Screen to plug the HDMI to. It might be very logical for you but I, a newbie, didn't really know how to setup all of these things and had to do some research!
@@ -50,7 +50,7 @@ I managed to open and SSH port to my Pi and started using the terminal from my m
 
 That was it for the day! Day 0 was succesful.
 
-## Day 1 - The camera is here!
+## The camera is here!
 Today my camera arrvied and my goal was simple - take a picture of myself :D
 
 For the hardware part of plugging the camera I used the help of my dad. As for the Pi however, similairly to the _ssh connection_ I had to enable it camera access. 
@@ -70,7 +70,7 @@ camera.capture('foo.jpg')
 ```
 _Important: The sleep(1) function gives the necessary time for the camera to prepare. If you remove it you might encounter difficulties_
 
-## Day 2 - How the hell is this going to work?
+## How the hell is this going to work?
 Today I again didn't code much, instead I spent whole day thinking about practical issues of image detection and how the hell am I going to create my data set, how is the model going to learn what is a chess board and finally whether I should create my model from the scratch. 
 
 As always after few hours of extensive thinking and not being able figure it out I got demotivated and started doubting whether is it even possible. Then I started talking to my friends and with their help I managed to organise my thoughts and pinpoint important things:
