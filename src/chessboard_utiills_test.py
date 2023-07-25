@@ -1,6 +1,6 @@
 import pytest
 from collections import deque
-from chess_utils import E, W, B, translate_fe_notation, one_hot_wbe, translate_fe_to_int_notation
+from chessboard_utills import E, W, B, translate_fe_notation, one_hot_wbe, translate_fe_to_int_notation
 
 
 @pytest.mark.parametrize(
