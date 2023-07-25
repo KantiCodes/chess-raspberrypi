@@ -189,3 +189,8 @@ When predicting, my neural network will return me the data in the form of a vect
            H    W W W W W W W W
 
 The board above represents the first move of the game, where White moved pawn from G4 to F4
+There! Now I can work from my machine and have the pi terminal available.
+
+# Inference
+
+![Inference Model](photos/inferencechess.drawio.png)
