@@ -1,5 +1,6 @@
-# My favorites
+# Misc
 mypy
+autopep8
 black
 pytest-cov
 pytest-mock
@@ -12,6 +13,8 @@ flake8-executable
 flake8-black
 pylint
 
-# Python 3.8.0
-tensorflow
+# Libraries
+tensorflow-macos
+Pillow
 pytest
+matplotlib
